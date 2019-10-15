@@ -2,6 +2,20 @@ import axios from "axios";
 const Parser = require('rss-parser');
 const URL_RSS = 'https://anchor.fm/s/a3a6434/podcast/rss';
 const TOKEN_FEED = 'feed';
+const firebase = require("firebase");
+const firebaseConfig = {
+  apiKey: "AIzaSyAjGmaI0VV2b-pEjCuAj_fMtbXuoDTqhtw",
+  authDomain: "caos-eb3a7.firebaseapp.com",
+  databaseURL: "https://caos-eb3a7.firebaseio.com",
+  projectId: "caos-eb3a7",
+  storageBucket: "caos-eb3a7.appspot.com",
+  messagingSenderId: "919856644687",
+  appId: "1:919856644687:web:4acaa79e175756d934a03a",
+  measurementId: "G-19QMPN739N"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
 
 function getEmbedLink(url) {
   return "https://anchor.fm/subrumundo/embed/episodes" + url.substr("https://anchor.fm/subrumundo/episodes".length);
@@ -33,7 +47,15 @@ api.getFeed = async () => {
 }
 
 api.updateDatabase = async (feed) => {
-  return localStorage.setItem(TOKEN_FEED, JSON.stringify(feed));
+  const db = firebase.firestore();
+  const infoDocRef = db.collection('podcast').doc('info');
+  try {
+    await infoDocRef.set(feed);
+    return localStorage.setItem(TOKEN_FEED, JSON.stringify(feed));
+  } catch (e) {
+    console.error(e);
+    return false;
+  }
 }
 
 api.getDatabase = async (feed) => {

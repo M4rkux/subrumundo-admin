@@ -9,7 +9,8 @@ class Preview extends Component {
 
     this.state = {
       feed: {},
-      database: {}
+      database: {},
+      loadingUpdate: false
     };
 
     this.updateDatabase = this.updateDatabase.bind(this);
@@ -23,12 +24,17 @@ class Preview extends Component {
 
   async updateDatabase(event) {
     event.preventDefault();
-    const { feed } = this.state;
-    api.updateDatabase(feed);
+    const { feed, loadingUpdate } = this.state;
+    if (!loadingUpdate) {
+      this.setState({ loadingUpdate: true});
+      await api.updateDatabase(feed);
+      const database = await api.getDatabase();
+      this.setState({ feed: feed, database: database, loadingUpdate: false});
+    }
   }
 
   render () {
-    const { feed, database } = this.state;
+    const { feed, database, loadingUpdate } = this.state;
     return (
       <div className="container">
         <table>
@@ -53,7 +59,9 @@ class Preview extends Component {
           </tbody>
         </table>
         <div>
-          <button className="btn btn-primary" onClick={this.updateDatabase} >Atualizar</button>
+          <button className="btn btn-primary" onClick={this.updateDatabase} disabled={loadingUpdate}>
+            Atualizar
+          </button>
         </div>
       </div>
     );

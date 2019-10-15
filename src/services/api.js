@@ -1,0 +1,49 @@
+import axios from "axios";
+const Parser = require('rss-parser');
+const URL_RSS = 'https://anchor.fm/s/a3a6434/podcast/rss';
+const TOKEN_FEED = 'feed';
+
+function getEmbedLink(url) {
+  return "https://anchor.fm/subrumundo/embed/episodes" + url.substr("https://anchor.fm/subrumundo/episodes".length);
+}
+
+const api = axios.create({
+  baseURL: process.env.REACT_APP_API || 'http://localhost:3001'
+});
+
+api.getFeed = async () => {
+  const parser = new Parser();
+  const feed = await parser.parseURL(URL_RSS);
+
+  let items = feed.items;
+  let info = feed;
+  delete info.items;
+
+  const episodes = items.map((item) => {
+      item.embed = getEmbedLink(item.link);
+      const newDate = new Date(item.isoDate);
+      let episode = {};
+      episode[newDate.getTime().toString()] = item;
+      return episode;
+  });
+
+  info.episodes = episodes;
+
+  return info;
+}
+
+api.updateDatabase = async (feed) => {
+  return localStorage.setItem(TOKEN_FEED, JSON.stringify(feed));
+}
+
+api.getDatabase = async (feed) => {
+  return JSON.parse(localStorage.getItem(TOKEN_FEED));
+}
+
+api.interceptors.response.use((response) => {
+  return response;
+}, (error) => {
+  return error.response;
+});
+
+export default api;

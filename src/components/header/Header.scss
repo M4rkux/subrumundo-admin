@@ -1,0 +1,78 @@
+.App-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    font-size: 14px;
+    color: white;
+    padding: 15px 30px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    width: 100%;
+    max-width: calc(100vw - 60px);
+}
+
+.logo-icon {
+    width: 45px;
+    height: 45px;
+}
+
+.btn-logout {
+    display: flex;
+    min-width: 120px !important;
+
+    > div {
+        display: flex;
+        align-items: center;
+        margin: auto;
+    }
+}
+
+.title-header {
+    margin-right: auto;
+    margin-left: 15px;
+}
+
+.btn.btn-fullscreen {
+    background-color: unset;
+    border: unset;
+    padding: 10px;
+
+    svg {
+        margin: 0px;
+    }
+}
+
+:fullscreen {
+    .btn-logout, .btn-redo {
+        display: none;
+    }
+}
+
+@media (max-width: 860px) {
+    .App-header {
+        padding: 10px 5px;
+        max-width: calc(100vw - 10px);
+    }
+}
+
+@media (max-width: 811px) {
+    .App-header {
+        .bt-redo-logout-wrapper {
+            width: 100%;
+            justify-content: space-between;
+            .btn-logout {
+                margin-right: 5px;
+            }
+        }
+        button {
+            margin-top: 10px;
+        }
+    }
+}
+
+@media (max-width: 430px) {
+    .bt-redo-logout-wrapper {
+        flex-wrap: wrap;
+    }
+}

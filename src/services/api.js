@@ -35,10 +35,7 @@ api.getFeed = async () => {
 
   const episodes = items.map((item) => {
       item.embed = getEmbedLink(item.link);
-      const newDate = new Date(item.isoDate);
-      let episode = {};
-      episode[newDate.getTime().toString()] = item;
-      return episode;
+      return item;
   });
 
   info.episodes = episodes;

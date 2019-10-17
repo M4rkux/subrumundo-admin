@@ -2,7 +2,7 @@ import axios from "axios";
 const Parser = require('rss-parser');
 const URL_RSS = 'https://anchor.fm/s/a3a6434/podcast/rss';
 const TOKEN_FEED = 'feed';
-const firebase = require("firebase");
+const firebase = require("firebase/firebase");
 const firebaseConfig = {
   apiKey: "AIzaSyAjGmaI0VV2b-pEjCuAj_fMtbXuoDTqhtw",
   authDomain: "caos-eb3a7.firebaseapp.com",
@@ -43,12 +43,29 @@ api.getFeed = async () => {
   return info;
 }
 
-api.updateDatabase = async (feed) => {
+api.updateDatabaseInfo = async (feed) => {
   const db = firebase.firestore();
   const infoDocRef = db.collection('podcast').doc('info');
+  delete feed.items;
   try {
-    await infoDocRef.set(feed);
-    return localStorage.setItem(TOKEN_FEED, JSON.stringify(feed));
+    return await infoDocRef.set(feed);
+  } catch (e) {
+    console.error(e);
+    return false;
+  }
+}
+
+api.updateDatabaseEpisodes = async (feed) => {
+  const db = firebase.firestore();
+  const infoDocRef = db.collection('episodes');
+  const episodes = feed.episodes;
+  try {
+    const promises = episodes.map(async (episode) => {
+      const timestamp = new Date(episode.pubDate).getTime();
+      return await infoDocRef.doc(timestamp.toString()).set(episode, {merge: true});
+    });
+    await Promise.all(promises);
+    return localStorage.removeItem(TOKEN_FEED);
   } catch (e) {
     console.error(e);
     return false;
@@ -56,7 +73,9 @@ api.updateDatabase = async (feed) => {
 }
 
 api.getDatabase = async (feed) => {
-  return JSON.parse(localStorage.getItem(TOKEN_FEED));
+  const db = firebase.firestore();
+  const infoDocRef = await db.collection('episodes').get();
+  return infoDocRef.size;
 }
 
 api.interceptors.response.use((response) => {

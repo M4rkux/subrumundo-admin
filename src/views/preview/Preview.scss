@@ -32,29 +32,21 @@ table {
     tr {
       background-color: $table-second-header-color;
       th {
-        padding: 5px 0px 5px 0px;
+        padding: 10px;
       }
       &:first-child {
         background-color: $table-first-header-color;
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
         th {
-          padding: 0px;
           border-top-left-radius: 15px;
           border-top-right-radius: 15px;
           font-weight: 400;
           div > span {
             margin: 10px 15px;
-            span.title-name {
-              font-weight: 600;
-              font-size: 18px;
-            }
+            font-weight: 600;
+            font-size: 18px;
           }
-        }
-      }
-      &:nth-child(2) {
-        th {
-          padding: 5px 0px 0px 0px;
         }
       }
     }
@@ -97,6 +89,16 @@ table {
 
 .btn {
   margin-top: 30px;
+}
+
+.btn-update {
+  position: relative;
+  .MuiLinearProgress-root {
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    bottom: 0px;
+  }
 }
 
 .column-title {

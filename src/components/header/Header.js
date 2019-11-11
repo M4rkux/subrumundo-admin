@@ -48,8 +48,7 @@ class Header extends Component {
             {title}
           </div>
 
-          <div className="d-flex bt-redo-logout-wrapper">
-
+          <div className="d-flex">
             <button className="btn btn-secondary btn-logout" onClick={this.logOut} title="Sair">
               <div className="m-auto">
                 <span>Sair</span>

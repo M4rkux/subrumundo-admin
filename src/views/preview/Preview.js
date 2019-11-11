@@ -44,33 +44,24 @@ class Preview extends Component {
     const { feed, amountEpisodes, loadingUpdate } = this.state;
     return (
       <div className="container">
-        <table>
-          <thead>
-            <tr>
-              <th colSpan="2">
-                <div>
-                  <span>Comparação de dados</span>
-                </div>
-              </th>
-            </tr>
-            <tr>
-              <th><span>RSS</span></th>
-              <th><span>Site</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="updated-col">
-                {feed && feed.episodes ? feed.episodes.length + ' Episódios' : <CircularProgress />}
-              </td>
-              <td className="updated-col">
-                {amountEpisodes ? amountEpisodes + ' Episódios' :  <CircularProgress />}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="comparation">
+          <div className="title"><span>Comparação de dados</span></div>
+          <div className="comparation-item">
+            <div className="comparation-title"><span>RSS</span></div>
+            <div className="comparation-content">
+              <span className={ feed && feed.episodes && feed.episodes.length > amountEpisodes ? 'warn' : '' }>{feed && feed.episodes ? feed.episodes.length + ' Episódios' : <CircularProgress />}</span>
+            </div>
+          </div>
+          <div className="comparation-item">
+            <div className="comparation-title"><span>Site</span></div>
+            <div className="comparation-content">
+              <span>{amountEpisodes ? amountEpisodes + ' Episódios' :  <CircularProgress />}</span>
+            </div>
+          </div>
+        </div>
+
         <div>
-          <button className="btn btn-primary btn-update" onClick={this.handleClickUpdate} 
+          <button className="btn btn-primary btn-update mt-30" onClick={this.handleClickUpdate} 
             disabled={!(feed && feed.episodes) || loadingUpdate}>
             Atualizar
             {

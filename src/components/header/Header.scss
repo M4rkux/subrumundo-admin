@@ -55,24 +55,3 @@
         max-width: calc(100vw - 10px);
     }
 }
-
-@media (max-width: 811px) {
-    .App-header {
-        .bt-redo-logout-wrapper {
-            width: 100%;
-            justify-content: space-between;
-            .btn-logout {
-                margin-right: 5px;
-            }
-        }
-        button {
-            margin-top: 10px;
-        }
-    }
-}
-
-@media (max-width: 430px) {
-    .bt-redo-logout-wrapper {
-        flex-wrap: wrap;
-    }
-}

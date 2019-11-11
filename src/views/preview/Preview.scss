@@ -2,7 +2,59 @@
 
 .container {
   display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.comparation {
+  display: flex;
   flex-wrap: wrap;
+  width: 100%;
+  color: white;
+  border-spacing: 0;
+  padding: 0px;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+  background-color: unset;
+  margin-bottom: 15px;
+  flex-grow: 100;
+  border-radius: 15px;
+  max-width: 600px;
+  margin: auto;
+  div {
+    padding: 10px;
+    span {
+      padding: 10px;
+    }
+    &.title {
+      width: 100%;
+      background-color: $table-first-header-color;
+      padding: 10px;
+      font-weight: 600;
+      font-size: 18px;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+    &.comparation-item {
+      padding: 0px;
+      width: 50%;
+      .comparation-title {
+        font-weight: 600;
+        font-size: 18px;
+        background-color: $table-second-header-color;
+      }
+      .comparation-content {
+        display: flex;
+        height: calc(100% - 60px);
+        > span {
+          margin: auto;
+          &.warn {
+            font-weight: bold;
+            font-size: 1.2em;
+          }
+        }
+      }
+    }
+  }
 }
 
 .line-flex {
@@ -10,85 +62,6 @@
     margin-top: 30px;
     min-width: 210px;
   }
-}
-
-.table-cards-wrapper {
-  display: flex;
-  justify-content: space-between;
-}
-
-table {
-  width: 100%;
-  color: white;
-  border-spacing: 0;
-  padding: 0px;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
-  background-color: unset;
-  margin-bottom: 15px;
-  min-width: 500px;
-  flex-grow: 100;
-  border-radius: 15px;
-  thead {
-    tr {
-      background-color: $table-second-header-color;
-      th {
-        padding: 10px;
-      }
-      &:first-child {
-        background-color: $table-first-header-color;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-        th {
-          border-top-left-radius: 15px;
-          border-top-right-radius: 15px;
-          font-weight: 400;
-          div > span {
-            margin: 10px 15px;
-            font-weight: 600;
-            font-size: 18px;
-          }
-        }
-      }
-    }
-  }
-  tbody {
-    tr {
-      &:nth-child(even) {
-          background-color: $table-color-even;
-      }
-      &:nth-child(odd) {
-        background-color: $table-color-odd;
-      }
-      td {
-        padding: 12px;
-
-        &.updated-col {
-          animation: updating-col 1s linear;
-          animation-fill-mode: forwards;  
-        }
-      }
-      &:last-child {
-        td {
-          &:first-child {
-            border-bottom-left-radius: 15px;
-            div {
-              border-bottom-left-radius: 15px;
-            }
-          }
-          &:last-child {
-            border-bottom-right-radius: 15px;
-            div {
-              border-bottom-right-radius: 15px;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-.btn {
-  margin-top: 30px;
 }
 
 .btn-update {

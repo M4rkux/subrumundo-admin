@@ -1,54 +1,36 @@
 @import '../../assets/colors';
 
-:not(:fullscreen) {
-  footer {
-    width: 100%;
-    height: 80px;
-    background-color: $primary-color;
-    color: #fff;
-    text-align: right;
-    vertical-align: middle;
-    font-family: Aileron;
-    font-size: 16px;
-    font-weight: 400;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.25;
-    letter-spacing: normal;
-    display: flex;
-    align-items: center;
-    position: fixed;
-    bottom: 0;
-    z-index: 9;
-    flex-wrap: wrap;
-    align-self: flex-end;
-    margin-top: auto;
-  
-    img, span {
-      margin: 0px 7.5px;
-  
-      &.version {
-        margin-right: auto;
-        margin-left: 30px;
-      }
-  
-      &:nth-last-child(1) {
-        margin-right: 60px;
-      }
+footer {
+  width: 100%;
+  height: 45px;
+  background-color: $primary-color;
+  color: #fff;
+  text-align: right;
+  vertical-align: middle;
+  font-family: Aileron;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  z-index: 9;
+  flex-wrap: wrap;
+
+  img, span {
+    margin: 0px 7.5px;
+
+    &.version {
+      margin-right: auto;
+      margin-left: 30px;
     }
-  }
-}
 
-:fullscreen {
-  footer {
-    display: none;
-  }
-}
-
-@media(max-width: 1005px) {
-  :not(:fullscreen) {
-    footer {
-      position: unset;
+    &:nth-last-child(1) {
+      margin-right: 60px;
     }
   }
 }

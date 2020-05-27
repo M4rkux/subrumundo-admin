@@ -8,6 +8,7 @@ import Footer from "./components/footer/Footer";
 import './App.scss';
 import Episodes from "./views/episodes/Episodes";
 import Patrons from "./views/patrons/Patrons";
+import { Container } from "@material-ui/core";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -17,7 +18,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
         <div className="App">
           <div className="loggedIn">
             <Header />
-            <Component {...props} />
+            <Container>
+              <Component {...props} />
+            </Container>
             <Footer />
           </div>
         </div>

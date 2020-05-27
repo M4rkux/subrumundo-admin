@@ -72,10 +72,32 @@ api.updateDatabaseEpisodes = async (feed) => {
   }
 }
 
-api.getDatabase = async (feed) => {
+api.getEpisodesCount = async (feed) => {
   const db = firebase.firestore();
   const infoDocRef = await db.collection('episodes').get();
   return infoDocRef.size;
+}
+
+api.listEpisodes = async (filter) => {
+  try {
+    const db = firebase.firestore();
+    let episodesRef;
+    if (filter.page) {
+      const first = await db.collection('episodes').orderBy('isoDate', 'desc').limit(filter.page * filter.limit).get();
+      const lastVisible = first.docs[first.docs.length - 1];
+      episodesRef = await db.collection('episodes').orderBy('isoDate', 'desc').startAfter(lastVisible).limit(filter.limit).get();
+    } else {
+      episodesRef = await db.collection('episodes').orderBy('isoDate', 'desc').limit(filter.limit).get();
+    }
+
+    const docs = episodesRef.docs;
+    const episodes = docs.map((doc) => doc.data());
+    const infoDocRef = await db.collection('episodes').get();
+    const total = infoDocRef.size;
+    return { episodes, total };
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 api.interceptors.response.use((response) => {

@@ -88,19 +88,9 @@ body {
     overflow: auto;
     flex-direction: column;
     align-content: flex-start;
+    height: calc(100vh - 45px);
+    padding-bottom: 45px;
   }
-}
-
-:not(:fullscreen) {
-    .App > div.loggedIn {
-        height: calc(100vh - 80px);
-    }
-}
-
-:fullscreen {
-    .App > div.loggedIn {
-        height: 100vh;
-    }
 }
 
 .App-logo {
@@ -140,10 +130,9 @@ ul {
     list-style: none;
     padding: 0px;
     margin: 0px;
-    color: $white;
 }
 
-select, input {
+input {
   height: 40px;
   border: $placeholder-color solid 1px;
   padding: 0px 8px;
@@ -173,27 +162,6 @@ select, input {
       + .characters-indicator {
           color: $primary-color;
       }
-  }
-}
-
-select {
-  padding-right: 50px;
-  background-image: url('./assets/icons/select-arrow-down.svg'), linear-gradient(to right, $placeholder-color 100%, $placeholder-color 100%);
-  background-position: right 12px center, 100% 0;
-  background-repeat: no-repeat;
-  background-size: 15.168px 9.31px, 40px 100%;
-
-  box-sizing: border-box;
-  appearance: none;
-
-  &:not([disabled]):not(:active):hover {
-      background-image: url('./assets/icons/select-arrow-down.svg'), linear-gradient(to right, $primary-color 100%, $primary-color 100%);
-
-      &:active {
-        background-image: url('./assets/icons/select-arrow-up.svg'), linear-gradient(to right, $primary-color 100%, $primary-color 100%);
-        border-color: $primary-color;
-        outline: 0;
-    }
   }
 }
 

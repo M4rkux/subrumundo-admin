@@ -18,7 +18,7 @@ class Preview extends Component {
 
     (async() => {
       const feed = await api.getFeed();
-      const amountEpisodes = await api.getDatabase();
+      const amountEpisodes = await api.getEpisodesCount();
       this.setState({ feed: feed, amountEpisodes: amountEpisodes});
     })();
   }
@@ -36,7 +36,7 @@ class Preview extends Component {
     const { feed } = this.state;
       // await api.updateDatabaseInfo(feed);
       await api.updateDatabaseEpisodes(feed);
-      const amountEpisodes = await api.getDatabase();
+      const amountEpisodes = await api.getEpisodesCount();
       this.setState({ feed: feed, amountEpisodes: amountEpisodes, loadingUpdate: false});
   }
 

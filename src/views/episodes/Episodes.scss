@@ -1,0 +1,11 @@
+.MuiTableCell-root {
+    &.column-title {
+        width: 540px;
+    }
+    &.MuiTableCell-body {
+        &.table-loading {
+            height: 317px;
+            text-align: center;
+        }
+    }
+}

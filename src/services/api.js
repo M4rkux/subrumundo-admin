@@ -83,11 +83,11 @@ api.listEpisodes = async (filter) => {
     const db = firebase.firestore();
     let episodesRef;
     if (filter.page) {
-      const first = await db.collection('episodes').orderBy('isoDate', 'desc').limit(filter.page * filter.limit).get();
+      const first = await db.collection('episodes').orderBy(filter.order.by, filter.order.asc ? 'asc' : 'desc').limit(filter.page * filter.limit).get();
       const lastVisible = first.docs[first.docs.length - 1];
-      episodesRef = await db.collection('episodes').orderBy('isoDate', 'desc').startAfter(lastVisible).limit(filter.limit).get();
+      episodesRef = await db.collection('episodes').orderBy(filter.order.by, filter.order.asc ? 'asc' : 'desc').startAfter(lastVisible).limit(filter.limit).get();
     } else {
-      episodesRef = await db.collection('episodes').orderBy('isoDate', 'desc').limit(filter.limit).get();
+      episodesRef = await db.collection('episodes').orderBy(filter.order.by, filter.order.asc ? 'asc' : 'desc').limit(filter.limit).get();
     }
 
     const docs = episodesRef.docs;

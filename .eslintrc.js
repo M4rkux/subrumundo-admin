@@ -5,11 +5,16 @@ module.exports = {
   },
   extends: [
     "plugin:vue/vue3-essential",
+    "plugin:vue/vue3-strongly-recommended",
     "eslint:recommended",
     "@vue/typescript/recommended",
     "@vue/prettier",
     "@vue/prettier/@typescript-eslint",
   ],
+  rules: {
+    'vue/order-in-components': 'error',
+    'vue/no-uneused-vars': 'error'
+  },
   parserOptions: {
     ecmaVersion: 2020,
   },

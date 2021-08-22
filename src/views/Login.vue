@@ -1,12 +1,16 @@
 <template>
   <div class="app-login">
-    <form>
+    <form @submit.prevent="doLogin">
       <div class="mb-4">
         <InputComponent
           label="Username"
           id="username"
           type="text"
           placeholder="Username"
+          :value-prop="username"
+          @updateValue="updateUsername"
+          icon="user"
+          required
         />
       </div>
       <div class="mb-6">
@@ -14,11 +18,15 @@
           label="Password"
           id="password"
           type="password"
-          placeholder="******************"
+          placeholder="**********"
+          :value-prop="password"
+          @updateValue="updatePassword"
+          icon="fingerprint"
+          required
         />
       </div>
       <div class="app-login__button-wrapper">
-        <button class="app-login__button" type="button">Login</button>
+        <ButtonComponent type="submit" label="Login" :loading="isLoading" />
       </div>
     </form>
   </div>
@@ -27,12 +35,43 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import InputComponent from "@/components/Input.vue";
+import ButtonComponent from "@/components/Button.vue";
 
 export default defineComponent({
-  name: "Login",
+  name: "LoginPage",
+
+  data() {
+    return {
+      username: "",
+      password: "",
+    };
+  },
 
   components: {
     InputComponent,
+    ButtonComponent,
+  },
+
+  computed: {
+    isLoading() {
+      return this.$store.getters.isLoading;
+    },
+  },
+
+  methods: {
+    async doLogin() {
+      await this.$store.dispatch("login", {
+        username: this.username,
+        password: this.password,
+      });
+      this.$router.push("/");
+    },
+    updateUsername(username: string) {
+      this.username = username;
+    },
+    updatePassword(password: string) {
+      this.password = password;
+    },
   },
 });
 </script>
@@ -46,11 +85,7 @@ export default defineComponent({
   }
 
   &__button-wrapper {
-    @apply flex items-center justify-between;
-  }
-
-  &__button {
-    @apply bg-blue-500 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded;
+    @apply flex items-center justify-center;
   }
 }
 </style>

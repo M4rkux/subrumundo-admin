@@ -1,6 +1,17 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import router from "./router";
+import router from "@/router";
+import store from "@/store";
 import "./index.css";
+import { updateHeader } from "@/utils/auth";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { loadIcons } from "./utils/icons";
 
-createApp(App).use(router).mount("#app");
+loadIcons();
+updateHeader();
+
+const app = createApp(App).use(store);
+app.use(router);
+app.use(store);
+app.component("FontAwesomeIcon", FontAwesomeIcon);
+app.mount("#app");

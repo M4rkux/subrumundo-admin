@@ -78,7 +78,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .app-login {
-  @apply shadow-md bg-gray-700 rounded px-8 pt-6 pb-8 flex flex-col m-auto mt-40;
+  @apply shadow-md bg-gray-800 rounded px-8 pt-6 pb-8 flex flex-col m-auto mt-40;
 
   @screen sm {
     @apply w-2/3 max-w-lg;

@@ -1,27 +1,24 @@
 <template>
-  <div v-if="loggedIn" id="nav">
-    <router-link to="/">Home</router-link> |
-    <a href="#" @click="doLogout">Logout</a>
+  <Sidebar v-if="loggedIn" />
+  <div class="w-full">
+    <router-view class="container mx-auto pt-5 pb-24 md:pb-5" />
   </div>
-  <router-view />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import Sidebar from "@/components/Sidebar.vue";
 
 export default defineComponent({
   name: "App",
 
+  components: {
+    Sidebar,
+  },
+
   computed: {
     loggedIn() {
       return this.$store.getters.isAuthenticated;
-    },
-  },
-
-  methods: {
-    async doLogout() {
-      await this.$store.dispatch("logout");
-      this.$router.push("/login");
     },
   },
 });
@@ -29,11 +26,11 @@ export default defineComponent({
 
 <style lang="scss">
 body {
-  @apply bg-gray-800 text-gray-300;
+  @apply bg-gray-700 text-gray-300;
 }
 
 #app {
-  @apply container mx-auto px-4 sm:px-0;
+  @apply mx-auto flex flex-col md:flex-row;
 
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

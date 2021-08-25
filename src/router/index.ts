@@ -5,7 +5,10 @@ import {
   RouteLocationNormalized,
   RouteRecordRaw,
 } from "vue-router";
-import Home from "../views/Home.vue";
+import Dashboard from "../views/Dashboard.vue";
+import Episodes from "../views/Episodes.vue";
+import Subscribers from "../views/Subscribers.vue";
+import Users from "../views/Users.vue";
 import store from "@/store";
 
 const ifAuthenticated = (
@@ -33,8 +36,26 @@ const ifNotAuthenticated = (
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "Dashboard",
+    component: Dashboard,
+    beforeEnter: ifAuthenticated,
+  },
+  {
+    path: "/episodes",
+    name: "Episodes",
+    component: Episodes,
+    beforeEnter: ifAuthenticated,
+  },
+  {
+    path: "/subscribers",
+    name: "Subscribers",
+    component: Subscribers,
+    beforeEnter: ifAuthenticated,
+  },
+  {
+    path: "/users",
+    name: "Users",
+    component: Users,
     beforeEnter: ifAuthenticated,
   },
   {

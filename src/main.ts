@@ -10,6 +10,8 @@ import { loadIcons } from "./utils/icons";
 loadIcons();
 updateHeader();
 
+document.title = "Subrumundo Admin";
+
 const app = createApp(App).use(store);
 app.use(router);
 app.use(store);

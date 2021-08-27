@@ -13,10 +13,10 @@ jobs:
       - uses: actions/checkout@v2
       - run: 'yarn install && yarn build:staging'
       - uses: FirebaseExtended/action-hosting-deploy@v0
-        env:
-          VUE_APP_API_URL=https://subrumundo-staging.herokuapp.com
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SUBRUMUNDO_ADMIN_STAGING }}'
           channelId: live
           projectId: subrumundo-admin-staging
+        env:
+          VUE_APP_API_URL: ${{secrets.STAGING_VUE_APP_API_URL}}

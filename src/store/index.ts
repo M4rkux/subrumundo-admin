@@ -1,6 +1,6 @@
 /* eslint-disable no-async-promise-executor */
 import Vuex from "vuex";
-import { updateHeader } from "@/utils/auth";
+import { updateApiHeader } from "@/utils/auth";
 import { authenticate } from "@/api";
 
 export default new Vuex.Store({
@@ -31,7 +31,7 @@ export default new Vuex.Store({
             localStorage.setItem("token", loggedUser.token);
             commit("setUser", loggedUser.user);
             localStorage.setItem("user", JSON.stringify(loggedUser.user));
-            updateHeader();
+            updateApiHeader();
           }
           commit("setLoading", false);
           resolve(loggedUser?.user);
@@ -46,7 +46,7 @@ export default new Vuex.Store({
       commit("removeUser");
       localStorage.removeItem("token");
       localStorage.removeItem("user");
-      updateHeader();
+      updateApiHeader();
     },
   },
   mutations: {

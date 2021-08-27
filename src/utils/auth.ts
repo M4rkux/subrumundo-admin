@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export function updateHeader(): void {
+export function updateApiHeader(): void {
   const token = localStorage.getItem("token");
   if (token) {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;

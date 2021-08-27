@@ -3,12 +3,12 @@ import App from "./App.vue";
 import router from "@/router";
 import store from "@/store";
 import "./index.css";
-import { updateHeader } from "@/utils/auth";
+import { updateApiHeader } from "@/utils/auth";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { loadIcons } from "./utils/icons";
 
 loadIcons();
-updateHeader();
+updateApiHeader();
 
 document.title = "Subrumundo Admin";
 

@@ -58,6 +58,10 @@ export default defineComponent({
     },
   },
 
+  mounted() {
+    this.$store.dispatch("logout");
+  },
+
   methods: {
     async doLogin() {
       await this.$store.dispatch("login", {

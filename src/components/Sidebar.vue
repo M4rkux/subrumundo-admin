@@ -30,10 +30,10 @@
           </router-link>
         </li>
         <li class="app-sidebar__item">
-          <a href="#" @click="doLogout" class="app-sidebar__link">
+          <router-link to="/login" class="app-sidebar__link">
             <font-awesome-icon icon="sign-out-alt" class="app-sidebar__icon" />
             <span class="app-sidebar__link-text">Logout</span>
-          </a>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -45,13 +45,6 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "SidebarComponent",
-
-  methods: {
-    async doLogout() {
-      await this.$store.dispatch("logout");
-      this.$router.push("/login");
-    },
-  },
 });
 </script>
 
@@ -86,7 +79,7 @@ export default defineComponent({
   &__icon {
     @apply m-auto pr-0;
 
-    @screen sm {
+    @screen md {
       @apply mr-4 w-[20px];
     }
   }

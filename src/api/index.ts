@@ -8,7 +8,7 @@ export async function authenticate(
 ): Promise<ILoggedUser | undefined> {
   try {
     const { data } = await axios.post(
-      `${config.BASE_URL}/authentication/login`,
+      `${config.API_URL}/authentication/login`,
       {
         email,
         password,

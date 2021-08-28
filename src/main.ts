@@ -13,6 +13,11 @@ updateApiHeader();
 document.title = "Subrumundo Admin";
 
 const app = createApp(App).use(store);
+app.config.globalProperties.$filters = {
+  formatDate(value: string) {
+    return new Date(value).toLocaleDateString();
+  },
+};
 app.use(router);
 app.use(store);
 app.component("FontAwesomeIcon", FontAwesomeIcon);

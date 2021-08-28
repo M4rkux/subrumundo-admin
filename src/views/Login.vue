@@ -1,7 +1,7 @@
 <template>
   <div class="app-login">
     <form @submit.prevent="doLogin">
-      <div class="mb-4">
+      <div class="mb-10">
         <InputComponent
           label="Username"
           id="username"
@@ -13,7 +13,7 @@
           required
         />
       </div>
-      <div class="mb-6">
+      <div class="mb-12">
         <InputComponent
           label="Password"
           id="password"

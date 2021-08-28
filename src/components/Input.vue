@@ -99,6 +99,12 @@ export default defineComponent({
     },
   },
 
+  watch: {
+    valueProp: function (val: string) {
+      this.value = val;
+    },
+  },
+
   methods: {
     touch() {
       this.touched = true;
@@ -140,7 +146,7 @@ export default defineComponent({
   }
 
   &__message {
-    @apply mt-2 text-left text-red-300 text-xs italic;
+    @apply mt-2 text-left text-red-300 text-xs italic absolute;
 
     &--icon {
       @apply ml-10;

@@ -1,7 +1,7 @@
 <template>
   <Sidebar v-if="loggedIn" />
   <div class="w-full">
-    <router-view class="container mx-auto pt-5 pb-24 md:pb-5" />
+    <router-view class="container mx-auto px-4 sm:px-10 pt-5 pb-24 md:pb-5" />
   </div>
 </template>
 

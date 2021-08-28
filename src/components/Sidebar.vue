@@ -14,25 +14,34 @@
               icon="microphone-alt"
               class="app-sidebar__icon"
             />
-            <span class="app-sidebar__link-text">Episodes</span>
+            <span class="app-sidebar__link-text">Episódios</span>
+          </router-link>
+        </li>
+        <li class="app-sidebar__item">
+          <router-link to="/patrons" class="app-sidebar__link">
+            <font-awesome-icon
+              icon="hand-holding-usd"
+              class="app-sidebar__icon"
+            />
+            <span class="app-sidebar__link-text">Patrões</span>
           </router-link>
         </li>
         <li class="app-sidebar__item">
           <router-link to="/subscribers" class="app-sidebar__link">
             <font-awesome-icon icon="rss" class="app-sidebar__icon" />
-            <span class="app-sidebar__link-text">Subscribers</span>
+            <span class="app-sidebar__link-text">Inscritos</span>
           </router-link>
         </li>
         <li class="app-sidebar__item">
           <router-link to="/users" class="app-sidebar__link">
             <font-awesome-icon icon="users" class="app-sidebar__icon" />
-            <span class="app-sidebar__link-text">Users</span>
+            <span class="app-sidebar__link-text">Usuários</span>
           </router-link>
         </li>
         <li class="app-sidebar__item">
           <router-link to="/login" class="app-sidebar__link">
             <font-awesome-icon icon="sign-out-alt" class="app-sidebar__icon" />
-            <span class="app-sidebar__link-text">Logout</span>
+            <span class="app-sidebar__link-text">Deslogar</span>
           </router-link>
         </li>
       </ul>
@@ -50,10 +59,10 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .app-sidebar {
-  @apply bg-gray-800 shadow-xl h-16 fixed bottom-0 z-10 w-full;
+  @apply bg-gray-800 shadow-xl h-16 fixed bottom-0 z-10 w-full  border-t-[1px] border-gray-700;
 
   @screen md {
-    @apply w-48 h-screen relative;
+    @apply w-48 min-h-screen h-auto relative border-t-0;
   }
 
   &__wrapper {

@@ -41,6 +41,13 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "Subscribers"  */ "../views/Subscribers.vue"),
   },
   {
+    path: "/patrons",
+    name: "Patrons",
+    beforeEnter: ifAuthenticated,
+    component: () =>
+      import(/* webpackChunkName: "Patrons"  */ "../views/Patrons.vue"),
+  },
+  {
     path: "/users",
     name: "Users",
     beforeEnter: ifAuthenticated,
